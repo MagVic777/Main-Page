@@ -159,7 +159,8 @@ $(document).on(
 			<br>
 			I hope to be in your consideration.<br>
 			Best,<br>
-			<a href="https://www.instagram.com/vicmagnusca/" target="_blank">@vicmagnusca</a>
+			<a href="https://www.instagram.com/vicmagnusca/" target="_BLANK">@vicmagnusca</a>
+			<a href="https://github.com/MagVic777/Main-Page" target="_BLANK">GitHub</a>
 		</div>
 	</div>
 </div>

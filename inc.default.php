@@ -3,7 +3,9 @@
 <div class="container">
 	<h1>Watering Schedule</h1>
 		<div class="alert alert-info">
-		<strong>Info!</strong> Click on the date to update the date of watering. Row changes changes after <?php echo $numofday; ?> days. Row changes to red after <?php echo $maxnumofday; ?> days. Please refresh the page for the tables to be resorted. (In newer projects, I had added javascript and jquery table sorting after a click.)
+		<strong>Info!</strong> Click on the date to update the date of watering. Row changes changes after <?php echo $numofday; ?> days. Row changes to red after <?php echo $maxnumofday; ?> days. 
+		Please refresh the page for the tables to be resorted. 
+		(In newer projects, I had added javascript and jquery table sorting after a click.)
 		</div>
 		<div class="table-responsive">
 		<table class="table table-striped">

@@ -5,4 +5,4 @@ The live demo can be found here: http://demo4compsa.alberthomesell.com/index.php
 
 I hope that I can assist in some projects!
 Best,
-@vicmagnusca
+https://www.instagram.com/vicmagnusca/

@@ -1,0 +1,150 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function(){ 
+
+$(".container").hide();
+$(".container").slideDown("slow");
+
+// Hide Status bar
+function mystatus(a) {
+ if(a == 1) { $("#status").parentsUntil("body").fadeIn(3000); } else if (a == 2) { $("#status").parentsUntil("body").hide();} else {  $("#status").parentsUntil("body").fadeToggle(); }
+}
+mystatus(2);
+
+// Ajax Error
+$(document).ajaxError(function(e, xhr, opt){
+	mystatus();
+	$("#status").text("Error requesting " + opt.url + ": " + xhr.status + " " + xhr.statusText);
+});
+
+
+// Watering Schedule
+$(".lastwatered").click( function(){
+	var me = $(this).text() + $(this).attr("id");
+	mystatus(1);
+	$("#status").text("Updated"+me);
+});
+ 
+//Add a Plant
+$("#formsubmit").click(function(){
+	alert("Add works");
+	
+	console.log($("#plant").val());
+	console.log($("#location").val());
+	console.log($("#more").val());
+	
+    $.post("index.php?act=add", 
+	{
+		plant: $("#plant").val(),
+		location: $("#location").val(),
+		more: $("#more").val()
+	},
+	function(data, status){
+		mystatus(1);
+        $("#status").html("Data: " + data + "<br>Status: " + status);
+    });
+});
+ 
+//End jQuery 
+});
+</script>
+</head>
+<body>
+
+<!-- Nav -->
+ <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <span class="navbar-brand glyphicon glyphicon-grain">PlantInfo<span>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="#"><span class="glyphicon glyphicon-grain"></span> Watering Schedule</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-plus-sign"></span> Add Plants</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-list"></span> Manage Plants</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Status -->
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-body" id="status">Current status</div>
+	</div>
+</div>
+
+<!-- Watering Schedule -->
+<div class="container">
+	<h1>Watering Schedule</h1>
+		<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+				 <th>ID</th>
+				 <th>Plant</th>
+				 <th>Location</th>
+				 <th>Last Watered</th>
+				 <th>Info</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				 <td>1</td>
+				 <td>Tomato</td>
+				 <td>Great Room</td>
+				 <th class="lastwatered" id="t">Today</td>
+				 <th>More</td>
+				</tr>
+				<tr>
+				 <td>2</td>
+				 <td>Lemon</td>
+				 <td>Great Room</td>
+				 <th class="lastwatered">Tomorrow</td>
+				 <th>More</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+
+</div>
+
+<!-- Add a Plant -->
+<div class="container">
+	<h1>Add a Plant</h1>
+	
+	<form>
+		<div class="input-group">
+		  <span class="input-group-addon"><i class="glyphicon glyphicon-grain"></i></span>
+		  <input id="plant" type="text" class="form-control" name="plant" placeholder="Plant">
+		</div>
+		<div class="input-group">
+		  <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+		  <input id="location" type="text" class="form-control" name="location" placeholder="Location">
+		</div>
+		<div class="input-group">
+		  <span class="input-group-addon"><i class="glyphicon glyphicon-info-sign"></i></span>
+		  <input id="more" type="text" class="form-control" name="more" placeholder="Additional Info">
+		</div>
+		<div class="input-group">
+		  <button type="button" class="btn btn-default" id="formsubmit">Submit</button>
+		</div>
+	</form>
+	
+</div>
+
+</body>
+</html>
